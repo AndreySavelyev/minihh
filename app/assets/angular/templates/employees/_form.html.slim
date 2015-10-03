@@ -1,0 +1,46 @@
+.form-inputs
+  .form-group.string.optional.employee_name
+    label.string.optional.control-label for="name"  Name
+    input#employee_name.string.optional.form-control ng-model="employee.name" name="name" type="text" ng-class="errorClass('name')" /
+    span.help-block ng-show="form.name.$invalid && form.name.$dirty"
+      = "{{ err_msg('name') }}"
+  .form-group.integer.optional.employee_salary
+    label.integer.optional.control-label for="salary"  Salary
+    input#employee_salary.numeric.integer.optional.form-control ng-model="employee.salary" name="salary" step="1" type="number" /
+  .form-group.integer.optional.employee_salary
+    label.integer.optional.control-label for="job_search_status"  Job search status
+    input#employee_job_search_status.integer.optional.form-control ng-model="employee.job_search_status" name="job_search_status" type="checkbox" /
+  .form-group.text.optional.employee_contact_info
+    label.text.optional.control-label for="contact_info"  Contact info
+    textarea#employee_contact_info.text.optional.form-control ng-model="employee.contact_info" name="contact_info" ng-class="errorClass('contact_info')"
+    span.help-block ng-show="form.contact_info.$invalid && form.contact_info.$dirty"
+      = "{{ err_msg('contact_info') }}"
+
+  div ng-show="persisted"
+    h3 Skills
+    div ng-init="employee"
+      div ng-controller='SkillsCtrl'
+        div ng-repeat="skill in skills"
+          h4
+            span class="label label-primary mrg" {{skill.name}}
+            a href="" ng-click="removeSkill($index)" Remove
+          input.string.optional.form-control id="{{$index}}_name" name="employee[skills][{{$index}}][name]" type="hidden" value="{{skill.name}}" /
+          input id="{{$index}}_id" name="employee[skills][{{$index}}][id]" type="hidden" value="{{skill.id}}"
+        .form-group
+          .col-xs-4
+            h4 Add new skill
+            .form-group.string.optional.employee_skills_name
+              label.string.optional.control-label Name
+              input.string.optional.form-control ng-model="newSkill"
+            a href="" ng-click="addNewSkill()" role="button" class="btn btn-default btn-success"
+              ' Add
+              span class="glyphicon glyphicon-plus" aria-hidden="true"
+        .form-group
+          h4 Or select from existing:
+          h4
+            span ng-repeat='skill in allSkills' class="label label-default skill_badge" ng-click="addSkill(skill.name)" {{skill.name}}
+.form-actions
+  .col-xs-2
+    input.btn.btn-default.btn-primary name="commit" type="submit" value=("{{submit_title}}")
+  .col-xs-2
+    a href="#employees" role="button" class="btn btn-default" Back

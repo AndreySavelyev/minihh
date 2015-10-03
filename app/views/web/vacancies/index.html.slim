@@ -1,0 +1,32 @@
+div
+  h1 Listing vacancies
+
+  table.table.table-striped
+    thead
+      tr
+        th id
+        th Name
+        th Added at
+        th Expires at
+        th Salary
+        th Contact info
+        th
+        th
+        th
+
+    tbody
+      - @vacancies.each do |vacancy|
+        tr
+          td = vacancy.id
+          td = vacancy.name
+          td = vacancy.added_at
+          td = vacancy.expires_at
+          td = vacancy.salary
+          td = vacancy.contact_info
+          td = link_to "Show", vacancy_path(vacancy)
+          td = link_to 'Edit', edit_vacancy_path(vacancy)
+          td = link_to 'Destroy', vacancy, data: {:confirm => 'Are you sure?'}, :method => :delete
+
+  br
+
+  = link_to 'New Vacancy', new_vacancy_path

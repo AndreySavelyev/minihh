@@ -1,0 +1,21 @@
+p#notice = notice
+
+p
+  strong Name:
+  = @employee.name
+p
+  strong Added at:
+  = @employee.added_at
+p
+  strong Expires at:
+  = @employee.expires_at
+p
+  strong Salary:
+  = @employee.salary
+p
+  strong Contact info:
+  = @employee.contact_info
+
+= link_to 'Edit', edit_employee_path(@employee)
+'|
+= link_to 'Back', employees_path

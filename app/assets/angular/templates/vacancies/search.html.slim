@@ -1,0 +1,55 @@
+div
+  h3
+    | Listing employees for vacancy
+    ' "{{vacancy.name}}"
+  br
+  div ng-show="full.length > 0"
+    div.alert.alert-success role="alert"
+      | Full matched employees
+    table.table.table-striped
+      thead
+        tr
+          th Id
+          th Name
+          th Job search status
+          th Salary
+          th Contact info
+          th
+      tbody
+        tr ng-repeat=("employee in full")
+          td  {{employee.id}}
+          td  {{employee.name}}
+          td  {{employee.job_search_status}}
+          td  {{employee.salary}}
+          td  {{employee.contact_info}}
+          td
+            '
+            a[ng-href="#employees/{{employee.id}}/show" title="Show"]
+              span.glyphicon.glyphicon-eye-open
+
+    br/
+  div ng-show="part.length > 0"
+    div.alert.alert-warning role="alert"
+      | Partially matched employees
+    table.table.table-striped
+      thead
+        tr
+          th Id
+          th Name
+          th Job search status
+          th Salary
+          th Contact info
+          th
+      tbody
+        tr ng-repeat=("employee in part")
+          td  {{employee.id}}
+          td  {{employee.name}}
+          td  {{employee.job_search_status}}
+          td  {{employee.salary}}
+          td  {{employee.contact_info}}
+          td
+            '
+            a[ng-href="#employees/{{employee.id}}/show" title="Show"]
+              span.glyphicon.glyphicon-eye-open
+
+    br/

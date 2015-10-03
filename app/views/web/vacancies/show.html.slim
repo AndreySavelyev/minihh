@@ -1,0 +1,21 @@
+p#notice = notice
+
+p
+  strong Name:
+  = @vacancy.name
+p
+  strong Added at:
+  = @vacancy.added_at
+p
+  strong Expires at:
+  = @vacancy.expires_at
+p
+  strong Salary:
+  = @vacancy.salary
+p
+  strong Contact info:
+  = @vacancy.contact_info
+
+= link_to 'Edit', edit_vacancy_path(@vacancy)
+'|
+= link_to 'Back', vacancies_path

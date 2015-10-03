@@ -1,0 +1,19 @@
+= simple_form_for(@vacancy) do |f|
+  = f.error_notification
+
+  .form-inputs
+    = f.input :name
+    = f.input :added_at, as: :string, input_html: {  class: 'datepicker' }
+    = f.input :expires_at, as: :string, input_html: {  class: 'datepicker' }
+    = f.input :salary
+    h4 Skills
+    #tasks
+      = f.simple_fields_for :skills do |skill|
+        = render 'skill_fields', f: skill
+      .links
+        = link_to_add_association 'add skill', f, :skills
+
+    = f.input :contact_info
+
+  .form-actions
+    = f.button :submit

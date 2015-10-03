@@ -1,0 +1,38 @@
+div
+  h1
+    | Listing vacancies
+  table.table.table-striped
+    thead
+      tr
+        th Id
+        th Name
+        th Added at
+        th Expires at
+        th Salary
+        th Contact info
+        th
+        th
+    tbody
+      tr ng-repeat=("vacancy in vacancies")
+        td {{vacancy.id}}
+        td {{vacancy.name}}
+        td {{vacancy.added_at}}
+        td {{vacancy.expires_at}}
+        td {{vacancy.salary}}
+        td {{vacancy.contact_info}}
+        td
+          '
+          a[ng-href="#vacancies/{{vacancy.id}}/edit" title="Edit"]
+            span.glyphicon.glyphicon-edit
+          '
+          a[ng-href="#vacancies/{{vacancy.id}}/show" title="Show"]
+            span.glyphicon.glyphicon-eye-open
+          '
+          a[ng-click="deleteVacancy(vacancy)" title="Remove"]
+            span.glyphicon.glyphicon-remove
+        td
+          a[ng-href="#vacancies/{{vacancy.id}}/search" title="Search employees"]
+            span.glyphicon.glyphicon-search
+  br/
+
+a[ng-href="#vacancies/new"] Add vacancy

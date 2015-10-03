@@ -1,0 +1,35 @@
+div
+  h1
+    | Listing employees
+  table.table.table-striped
+    thead
+      tr
+        th Id
+        th Name
+        th Job search status
+        th Salary
+        th Contact info
+        th
+    tbody
+      tr ng-repeat=("employee in employees")
+        td  {{employee.id}}
+        td  {{employee.name}}
+        td  {{employee.job_search_status}}
+        td  {{employee.salary}}
+        td  {{employee.contact_info}}
+        td
+          '
+          a[ng-href="#employees/{{employee.id}}/edit" title="Edit"]
+            span.glyphicon.glyphicon-edit
+          '
+          a[ng-href="#employees/{{employee.id}}/show" title="Show"]
+            span.glyphicon.glyphicon-eye-open
+          '
+          a[ng-click="deleteVacancy(employee)" title="Delete"]
+            span.glyphicon.glyphicon-remove
+        td
+          a[ng-href="#employees/{{employee.id}}/search" title="Search vacancies"]
+            span.glyphicon.glyphicon-search
+  br/
+
+a[ng-href="#employees/new"] Add employee

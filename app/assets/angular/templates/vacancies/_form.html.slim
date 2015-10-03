@@ -1,0 +1,45 @@
+.form-inputs
+  .form-group.string.optional.vacancy_name
+    label.string.optional.control-label for="vacancy_name"  Name
+    input#vacancy_name.string.optional.form-control ng-model="vacancy.name" name="vacancy[name]" type="text" /
+  .form-group.string.optional.vacancy_added_at
+    label.string.optional.control-label for="vacancy_added_at"  Added at
+    input#vacancy_added_at.string.optional.form-control ng-model="vacancy.added_at" name="vacancy[added_at]" type="string"
+  .form-group.string.optional.vacancy_expires_at
+    label.string.optional.control-label for="vacancy_expires_at"  Expires at
+    input#vacancy_expires_at.string.optional.form-control ng-model="vacancy.expires_at" name="vacancy[expires_at]" type="string" /
+  .form-group.integer.optional.vacancy_salary
+    label.integer.optional.control-label for="vacancy_salary"  Salary
+    input#vacancy_salary.numeric.integer.optional.form-control ng-model="vacancy.salary" name="vacancy[salary]" step="1" type="number" /
+  .form-group.text.optional.vacancy_contact_info
+    label.text.optional.control-label for="vacancy_contact_info"  Contact info
+    textarea#vacancy_contact_info.text.optional.form-control ng-model="vacancy.contact_info" name="vacancy[contact_info]"
+
+  div ng-show="persisted"
+    h3 Skills
+    div ng-init="vacancy"
+      div ng-controller='SkillsCtrl'
+        div ng-repeat="skill in skills"
+          h4
+            span class="label label-primary mrg" {{skill.name}}
+            a href="" ng-click="removeSkill($index)" Remove
+          input.string.optional.form-control id="{{$index}}_name" name="vacancy[skills][{{$index}}][name]" type="hidden" value="{{skill.name}}" /
+          input id="{{$index}}_id" name="vacancy[skills][{{$index}}][id]" type="hidden" value="{{skill.id}}"
+        .form-group
+          .col-xs-4
+            h4 Add new skill
+            .form-group.string.optional.vacancy_skills_name
+              label.string.optional.control-label Name
+              input.string.optional.form-control ng-model="newSkill"
+            a href="" ng-click="addNewSkill()" role="button" class="btn btn-default btn-success"
+              ' Add
+              span class="glyphicon glyphicon-plus" aria-hidden="true"
+        .form-group
+          h4 Or select from existing:
+          h4
+            span ng-repeat='skill in allSkills' class="label label-default skill_badge" ng-click="addSkill(skill.name)" {{skill.name}}
+.form-actions
+  .col-xs-2
+    input.btn.btn-default.btn-primary name="commit" type="submit" value=("{{submit_title}}")
+  .col-xs-2
+    a href="#vacancies" role="button" class="btn btn-default" Back
